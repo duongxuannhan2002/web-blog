@@ -2,12 +2,19 @@
 import Image from 'next/image'
 import styles from './writePage.module.css'
 import { useEffect, useState } from 'react'
-import ReactQuill from 'react-quill'
+// import ReactQuill from 'react-quill'
 import "react-quill/dist/quill.bubble.css"
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from '@/untils/firebase'
+import dynamic from 'next/dynamic'
+
+const ReactQuill = dynamic(
+  () => import('react-quill'),
+  { ssr: false }
+)
+
 
 const WritePage = () => {
   const { status } = useSession()
